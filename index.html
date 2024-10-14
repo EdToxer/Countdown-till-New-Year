@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown</title>
+    <style>
+        @media screen and (max-width: 480px) {
+        #Clock {
+            font-size: 24px;
+        }
+        #Emoji{
+            width:20px; height:20px;
+            margin-bottom: -5px;margin-left: 0px; 
+        }
+        }
+        @media screen and (min-width: 481px) {
+        #Clock {
+            font-size: 40px;
+        }
+        #Emoji{
+            width:40px; height:40px;
+            margin-bottom: -8px;margin-left: 10px; 
+        }
+        }
+    </style>
 </head>
-<style>
-    @media screen and (max-width: 480px) {
-    #Clock {
-        font-size: 24px;
-    }
-    #Emoji{
-        width:20px; height:20px;
-        margin-bottom: -5px;margin-left: 0px; 
-    }
-    }
-    @media screen and (min-width: 481px) {
-    #Clock {
-        font-size: 40px;
-    }
-    #Emoji{
-        width:40px; height:40px;
-        margin-bottom: -8px;margin-left: 10px; 
-    }
-    }
-</style>
 <script>
        //"December 31, 2000 23:55:35"
    const currentCountdownDate = new Date()
