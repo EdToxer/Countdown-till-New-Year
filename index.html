@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<script src="code.js" type="text/javascript"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+</head>
+<style>
+    @media screen and (max-width: 480px) {
+    #Clock {
+        font-size: 24px;
+    }
+    #Emoji{
+        width:20px; height:20px;
+        margin-bottom: -5px;margin-left: 0px; 
+    }
+    }
+    @media screen and (min-width: 481px) {
+    #Clock {
+        font-size: 40px;
+    }
+    #Emoji{
+        width:40px; height:40px;
+        margin-bottom: -8px;margin-left: 10px; 
+    }
+    }
+</style>
+<script>
+       //"December 31, 2000 23:55:35"
+   const currentCountdownDate = new Date()
+   var countDays = 92;
+   var countHours = 23;
+   var countMinutes = 60;
+   var days = currentCountdownDate.getDate()
+   var month = currentCountdownDate.getMonth()
+   var hours = currentCountdownDate.getHours()
+   var minutes = currentCountdownDate.getMinutes()
+   var first = true;
+   var i = 0; var x =0;
+   days = countDays - days;
+   hours = countHours - hours;
+   minutes = countMinutes - minutes+1;
+   function countdown(){
+       var nameDays = " Дней "
+       var nameHours = " Часов "
+       var nameMinutes = " Минут"
+       if (month == 10) {
+           countDays -= 30
+       }
+       if ( month >= 11) {
+           countDays -= 60
+       }
+       if ((days > 0) || (minutes > 0) || (hours > 0)){
+           if ((minutes - 1) > 0){
+               minutes -= 1;
+           } else{
+               if ((hours - 1) > 0){
+                   minutes = 59;
+                   hours -= 1;
+               } else{
+                   minutes = 59;
+                   hours = 23;
+                   days -=1;
+               }
+           }
+       }
+       //Дни
+       if ((days != 11) & (days%10 == 1)){
+           nameDays = " День ";
+       }
+       if (((days < 10)||(days > 20) )& ((days%10 >= 2) & days%10 <= 4)){
+           nameDays = " Дня ";
+       }
+       //часы
+       if ((hours != 11) & (hours%10 == 1)){
+           nameHours = " Час ";
+       }
+       if (((hours < 10)||(hours > 20) )& ((hours%10 >= 2) & hours%10 <= 4)){
+           nameHours = " Часа ";
+       }
+       //Минуты
+       if ((minutes != 11) & (minutes%10 == 1)){
+           nameMinutes = " Минута ";
+       }
+       if (((minutes < 10)||(minutes > 20) )& ((minutes%10 >= 2) & minutes%10 <= 4)){
+           nameMinutes = " Минуты ";
+       }
+       document.getElementById("Clock").innerHTML = (days+nameDays+hours+nameHours+minutes+nameMinutes);
+   }
+   function tick()
+   {
+       countdown();
+       if (first){
+           first = false;
+           x = (60 - currentCountdownDate.getSeconds())*1000;
+       } else{
+           x = 60000;
+       }
+       t = setTimeout('tick()',x);
+   }
+</script>
+<body onload="tick();">
+    <div id="Clock" style="font-family: Montserrat; display: inline;"></div><img id="Emoji" src="https://optim.tildacdn.com/tild6666-3565-4334-b536-653834636535/-/cover/40x40/center/center/-/format/webp/9a3f869f-abe6-4aca-9.png"/>       
+</body>
+</html>
